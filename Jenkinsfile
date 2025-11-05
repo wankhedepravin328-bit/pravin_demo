@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven'
-        jdk 'JDK11'
+        jdk 'JDK17'
     }
 
     stages {
@@ -35,6 +35,12 @@ pipeline {
     post {
         always {
             junit '**/target/surefire-reports/*.xml'
+        }
+        success {
+            echo '✅ Build and tests succeeded!'
+        }
+        failure {
+            echo '❌ Build or tests failed.'
         }
     }
 }
